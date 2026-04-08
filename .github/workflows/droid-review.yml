@@ -2,12 +2,8 @@ name: Droid Auto Review
 on:
   pull_request:
     types: [opened, ready_for_review, reopened]
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
 jobs:
   droid-review:
-    if: github.event.pull_request.draft == false
     uses: nizar-test/.github/.github/workflows/droid-review-reusable.yml@main
     with:
       automatic_security_review: true
